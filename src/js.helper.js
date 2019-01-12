@@ -1,11 +1,16 @@
 const Helper = function () {
 };
 
+Helper.prototype.getQueryParam = function (name) {
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
 Helper.prototype.setOption = function (optionTitle, options, defaultOptions) {
     return options[optionTitle] === undefined ? defaultOptions[optionTitle] : options[optionTitle];
 }
 
-Helper.prototype.clone = function(object){
+Helper.prototype.clone = function (object) {
     return Array.isArray(object) ? Object.assign([], object) : Object.assign({}, object);
 }
 
