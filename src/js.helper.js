@@ -1,6 +1,15 @@
 const Helper = function () {
 };
 
+Helper.prototype.isJson = function(string) {
+    try {
+        JSON.parse(string);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
 Helper.prototype.getQueryParam = function (name) {
     var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
     return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
